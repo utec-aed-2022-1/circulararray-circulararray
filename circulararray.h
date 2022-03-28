@@ -98,7 +98,7 @@ void CircularArray<T>::push_back(T data)
 template <class T>
 bool CircularArray<T>::is_full()
 {
-    if (size== capacity){
+    if (size()== capacity){
 
         return true;
     }
@@ -109,7 +109,7 @@ bool CircularArray<T>::is_empty()
 {
 
      
-    if (size < capacity ){
+    if (size() < capacity ){
 
         return true;
     }
