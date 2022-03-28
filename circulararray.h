@@ -118,6 +118,8 @@ bool CircularArray<T>::is_empty()
 template <class T>
 int CircularArray<T>::size()
 {
+
+    int size;
     if (back < front ){
     
 
