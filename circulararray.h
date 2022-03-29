@@ -64,6 +64,40 @@ int CircularArray<T>::next(int index)
 {
     return (index + 1) % capacity;
 }
+
+
+template <class T>
+T CircularArray<T>::pop_front()
+{ 
+   if(front== capacity-1){ 
+
+       front=0;
+   }
+   else if(size() == 1){ back= front;}
+   else {
+   front++;
+   }
+}
+
+template <class T>
+T CircularArray<T>::pop_back()
+{ 
+
+
+  if(back==0){
+
+      back=capacity-1;
+
+   }
+   else if(size() == 1){ back= front;}
+   else {
+       
+      back--; 
+   }
+   
+}
+
+
 template <class T>
 void CircularArray<T>::push_front(T data)
 { 
@@ -125,22 +159,22 @@ int CircularArray<T>::size()
 
      if (back +1 == front){
        size = capacity;
-       cout<< size << endl;
+       
        }
      else {
           size = capacity - (front - back - 1); 
-           cout<< size << endl;
+           
         }
     }
 
     else if(back == front){
     size = 1;
-    cout<< size << endl;
+    
     }
     
     else{
      size = back - front +1;
-       cout<< size << endl;
+       
     }
 
     return size;
