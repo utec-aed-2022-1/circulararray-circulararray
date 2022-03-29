@@ -102,7 +102,9 @@ template <class T>
 void CircularArray<T>::push_front(T data)
 { 
 
-   if (is_empty()){     
+   if (is_empty()){
+       ;
+   }else{
      if(front==0){       
            array[capacity-1]= data;
            front=capacity-1; 
