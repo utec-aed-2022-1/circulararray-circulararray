@@ -217,10 +217,8 @@ template <class T>
 string CircularArray<T>::to_string(string sep)
 {
     string result = "";
-    int it = front;
     for (int i = 0; i < size(); i++) {
-        result += std::to_string((array)[it]) + sep;
-        it = next(it);
+        result += std::to_string((*this)[i]) + sep;
     }
     //cout<<result<<endl;
     return result;    
@@ -254,18 +252,41 @@ void CircularArray<T>::resize(int factor) {
 
 template<class T>
 void CircularArray<T>::insert(T data, int pos) {
-    //TODO
+    if(pos >= size() || pos < 0)
+        return;
+    if(pos == 0)
+        push_front(data);
+    if(pos == size()-1)
+        push_back(data);
+
+    int it = front;
+    it = (front + pos)%capacity;
+    T* arr = new T[capacity];
+    int j = 0;
+    for(int i = pos; i <= back; i++){
+        arr[j] = array[i];
+        j++;
+    }
+    back = prev(pos);
+    push_back(data);
+    for(int i = 0; i < j; i++){
+        push_back(arr[i]);
+    }
+
 }
 
 template<class T>
 void CircularArray<T>::clear() {
-    //TODO
+    front = -1;
+    back = -1;
+    delete[] array;
 }
 
 template<class T>
-T &CircularArray<T>::operator[](int) {
-    //TODO
-    return array[front];
+T &CircularArray<T>::operator[](int index) {
+    int it = front;
+    it = (front + index)%capacity;
+    return array[it];
 }
 
 template<class T>
